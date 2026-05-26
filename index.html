@@ -48,3 +48,116 @@ body {
   z-index: 1;
 }
 
+.container.left::after { right: -8px; }
+.container.right::after { left: -8px; }
+
+.content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.year {
+  display: inline-block;
+  background: #2bb673;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Hidden content */
+.more {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+/* When open */
+.container.active .more {
+  max-height: 300px;
+  margin-top: 10px;
+}
+
+/* Animation */
+.container {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<div class="timeline">
+
+  <div class="container left">
+    <div class="content">
+      <div class="year">1991</div>
+      <h3>Founded</h3>
+      <p>Initial technology foundation established.</p>
+
+      <div class="more">
+        <p>Full write-up: Describe systems, vendors, infrastructure, etc.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container right">
+    <div class="content">
+      <div class="year">2009</div>
+      <h3>Expansion</h3>
+      <p>Major growth and new service offerings.</p>
+
+      <div class="more">
+        <p>Details about systems added, integrations, and changes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container left">
+    <div class="content">
+      <div class="year">2014</div>
+      <h3>Transformation</h3>
+      <p>Modernization of systems and restructuring.</p>
+
+      <div class="more">
+        <p>Architecture changes, migrations, impacts.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const items = document.querySelectorAll('.container');
+
+// Scroll animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.2 });
+
+items.forEach(item => observer.observe(item));
+
+// Click expand
+items.forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('active');
+  });
+});
+</script>
+
+</body>
+</html>
