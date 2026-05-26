@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Technology Timeline</title>
+<meta charset="UTF-8">
+<title>Technology Timeline</title>
 
 <style>
 body {
@@ -27,17 +27,16 @@ body {
   transform: translateX(-50%);
 }
 
-/* Timeline items */
 .container {
   padding: 20px 40px;
   position: relative;
   width: 50%;
+  cursor: pointer;
 }
 
 .container.left { left: 0; }
 .container.right { left: 50%; }
 
-/* Circle dots */
 .container::after {
   content: "";
   position: absolute;
@@ -52,7 +51,6 @@ body {
 .container.left::after { right: -8px; }
 .container.right::after { left: -8px; }
 
-/* Cards */
 .content {
   background: white;
   padding: 20px;
@@ -67,91 +65,3 @@ body {
   padding: 6px 14px;
   border-radius: 20px;
   font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* Animation start state */
-.container {
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-/* When visible */
-.container.show {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.6s ease;
-}
-</style>
-
-</head>
-
-<body>
-
-<div class="timeline">
-
-  <div class="container left">
-    <div class="content">
-      <div class="year">1991</div>
-      <h3>Founded</h3>
-      <p>Initial technology foundation established.</p>
-    </div>
-  </div>
-
-  <div class="container right">
-    <div class="content">
-      <div class="year">2009</div>
-      <h3>Expansion</h3>
-      <p>Major growth and new service offerings.</p>
-    </div>
-  </div>
-
-  <div class="container left">
-    <div class="content">
-      <div class="year">2014</div>
-      <h3>Transformation</h3>
-      <p>Modernization of systems and restructuring.</p>
-    </div>
-  </div>
-
-  <div class="container right">
-    <div class="content">
-      <div class="year">2017</div>
-      <h3>Cloud Adoption</h3>
-      <p>Shift to cloud-first infrastructure.</p>
-    </div>
-  </div>
-
-</div>
-
-<div class="container left">
-  <div class="content">
-    <div class="year">2028</div>
-    <p>New milestone here</p>
-  </div>
-</div>
-
-<div class="container left">
-  <div class="content">
-    <div class="year">2024</div>
-    <p>New milestone here</p>
-  </div>
-</div>
-
-<script>
-const items = document.querySelectorAll('.container');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
-  });
-}, { threshold: 0.2 });
-
-items.forEach(item => observer.observe(item));
-</script>
-
-</body>
-</html>
-``
